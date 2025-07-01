@@ -109,7 +109,7 @@
       },
       "gridPos": {
         "h": 16,
-        "w": 8,
+        "w": 9,
         "x": 0,
         "y": 0
       },
@@ -186,8 +186,8 @@
                   "fixed": "transparent"
                 },
                 "path": {
-                  "field": "eng_bench",
-                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_bench.NA.svg",
+                  "field": "dun_floor",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.Basement_floor.NA.svg",
                   "mode": "fixed"
                 }
               },
@@ -196,11 +196,225 @@
                 "vertical": "top"
               },
               "links": [],
-              "name": "eng_bench",
+              "name": "dun_floor",
               "placement": {
                 "height": 540,
                 "left": 0,
                 "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "dun_airfilter",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.Basement_airFilter.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "dun_airfilter",
+              "placement": {
+                "height": 540,
+                "left": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "dun_cnc",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.Basement_CNC.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "dun_cnc",
+              "placement": {
+                "height": 540,
+                "left": 0,
+                "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "com_floor",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.Commons_floor.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "com_floor",
+              "placement": {
+                "height": 540,
+                "left": 0,
+                "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "com_door",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.Commons_door.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "com_door",
+              "placement": {
+                "height": 540,
+                "left": 0,
+                "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "com_lock1",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.Commons_lock1.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "com_lock1",
+              "placement": {
+                "height": 540,
+                "left": 0,
+                "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "com_lock2",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.Commons_lock2.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "com_lock2",
+              "placement": {
+                "height": 540,
+                "left": 0,
                 "top": 0,
                 "width": 540
               },
@@ -237,6 +451,293 @@
                 "height": 540,
                 "left": 0,
                 "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "com_amplifier",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.Commons_amplifier.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "com_amplifier",
+              "placement": {
+                "height": 540,
+                "left": 0,
+                "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "com_heater2",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.Commons_heater2.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "com_heater2",
+              "placement": {
+                "height": 540,
+                "left": 0,
+                "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "com_tv",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.Commons_TVDisplay.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "com_tv",
+              "placement": {
+                "height": 540,
+                "left": 0,
+                "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "eng_floor",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_floor.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "eng_floor",
+              "placement": {
+                "height": 540,
+                "left": 0,
+                "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "eng_bench",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_bench.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "eng_bench",
+              "placement": {
+                "height": 540,
+                "left": 0,
+                "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "eng_printer1",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_printer1.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "eng_printer1",
+              "placement": {
+                "height": 540,
+                "left": 0,
+                "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "eng_printer2",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_printer2.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "eng_printer2",
+              "placement": {
+                "height": 540,
+                "left": 0,
+                "rotation": 0,
+                "top": 0,
+                "width": 540
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "transparent"
+                },
+                "path": {
+                  "field": "eng_lasercutter",
+                  "fixed": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_laserCutter.NA.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "eng_lasercutter",
+              "placement": {
+                "height": 540,
+                "left": 0,
                 "top": 0,
                 "width": 540
               },
@@ -306,40 +807,21 @@
               "id": "byRegexp",
               "options": "/^eng_bench$/"
             },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "purple",
-                  "mode": "fixed"
-                }
-              }
-            ]
+            "properties": []
           },
           {
             "matcher": {
               "id": "byName",
               "options": "eng_motion"
             },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "purple",
-                  "mode": "fixed"
-                }
-              },
-              {
-                "id": "displayName"
-              }
-            ]
+            "properties": []
           }
         ]
       },
       "gridPos": {
-        "h": 8,
-        "w": 15,
-        "x": 8,
+        "h": 16,
+        "w": 13,
+        "x": 9,
         "y": 0
       },
       "id": 1,
@@ -404,6 +886,16 @@
         }
       ],
       "title": "state table",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "reducers": [
+              "last"
+            ]
+          }
+        }
+      ],
       "type": "table"
     }
   ],
