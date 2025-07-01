@@ -11,20 +11,24 @@ if [[ -z "${dashboard_id}" ]]; then
   exit 1
 fi
 
-echo "making request…"  >> /dev/stderr
+REQUEST_URL="${GRAFANA_ROOT_URL}apis/dashboard.grafana.app/v1beta1/namespaces/org-${GRAFANA_ORG}/dashboards/${dashboard_id}"
+echo "making request to ${REQUEST_URL}…"  >> /dev/stderr
 
 code=$(
   curl -s \
   --request GET \
   -H "Authorization: Bearer ${GRAFANA_API_TOKEN}" \
   -H "Accept: application/json" \
-  "${GRAFANA_ROOT_URL}apis/dashboard.grafana.app/v1beta1/namespaces/org-${GRAFANA_ORG}/dashboards/${dashboard_id}" \
+  "${REQUEST_URL}" \
   -o /tmp/db19515.tmp \
   -w '%{http_code}'
 )
 
 if [[ "${code}" != 200 ]]; then
   echo "bad! got response code ${code} !" >> /dev/stderr
+  echo "error:"  >> /dev/stderr
+  cat /tmp/db19515.tmp  >> /dev/stderr
+  rm /tmp/db19515.tmp
   exit 1
 fi
 

@@ -231,7 +231,7 @@ The above just generate elements/overrides, but to put them into the JSON, use s
 
 ```bash
 dashboard_id="25t62w56-25ttg-252d-24gf-28thjf8wsgfws"
-./get_dashboard "${dashboard_id}" > dashboard.json
+./get_dashboard.sh "${dashboard_id}" > dashboard.json
 panel_title="VISUALISATION"
 cat dashboard.json \
   | jq \
@@ -245,8 +245,8 @@ cat dashboard.json \
       end
     )' \
   | sponge dashboard.json
-./set_dashboard "${dashboard_id}" dashboard.json
-./get_dashboard "${dashboard_id}" > dashboard.json
+./set_dashboard.sh "${dashboard_id}" dashboard.json
+./get_dashboard.sh "${dashboard_id}" > dashboard.json
 ```
 
 ### Add all elements

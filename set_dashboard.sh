@@ -37,14 +37,15 @@ request_json=$(
     '
 )
 
-echo "making request…" >> /dev/stderr
+REQUEST_URL="${GRAFANA_ROOT_URL}apis/dashboard.grafana.app/v1beta1/namespaces/org-${GRAFANA_ORG}/dashboards/${dashboard_id}"
+echo "making request to ${REQUEST_URL}…"  >> /dev/stderr
 
 code=$(
   curl -s \
     --request PUT \
     -H "Authorization: Bearer ${GRAFANA_API_TOKEN}" \
     -H "Content-type: application/json" \
-    "${GRAFANA_ROOT_URL}apis/dashboard.grafana.app/v1beta1/namespaces/org-${GRAFANA_ORG}/dashboards/${dashboard_id}" \
+    "${REQUEST_URL}" \
     -o /tmp/db12tgy3.tmp \
     -w '%{http_code}' \
     --data "${request_json}"
