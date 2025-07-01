@@ -136,6 +136,38 @@
                 ]
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "eng_bench"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "ON": {
+                        "icon": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_bench.on.svg",
+                        "index": 0
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "pattern": ".*",
+                      "result": {
+                        "icon": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_bench.off.svg",
+                        "index": 1
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -650,7 +682,7 @@
                 "path": {
                   "field": "eng_bench",
                   "fixed": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_bench.NA.svg",
-                  "mode": "fixed"
+                  "mode": "field"
                 }
               },
               "constraint": {
@@ -851,7 +883,7 @@
         ]
       },
       "gridPos": {
-        "h": 16,
+        "h": 6,
         "w": 13,
         "x": 9,
         "y": 0
@@ -919,6 +951,31 @@
         }
       ],
       "type": "table"
+    },
+    {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 7,
+        "x": 9,
+        "y": 6
+      },
+      "id": 3,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# To Test\n\nTo turn on/off things as a test, use the links on:\n\n<https://server.alifeee.net/do/shhm/>\n",
+        "mode": "markdown"
+      },
+      "pluginVersion": "12.0.2",
+      "title": "Test Instructions",
+      "type": "text"
     }
   ],
   "preload": false,
