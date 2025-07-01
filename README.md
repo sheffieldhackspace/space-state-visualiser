@@ -202,14 +202,14 @@ function make_override_json() {
   config_override='.
     | .matcher.id = "byName"
     | .matcher.options = $name
-    | .properties.id = "mappings"
-    | .properties.value[0].type = "value"
-    | .properties.value[0].options |= (.[$on_state].index = 0)
-    | .properties.value[0].options |= (.[$on_state].icon = $img_url + ".on.svg")
-    | .properties.value[1].type = "regex"
-    | .properties.value[1].options.pattern = ".*"
-    | .properties.value[1].options.result.index = 1
-    | .properties.value[1].options.result.icon = $img_url + ".off.svg"
+    | .properties[0].id = "mappings"
+    | .properties[0].value[0].options |= (.[$on_state].icon = $img_url + ".on.svg")
+    | .properties[0].value[0].options |= (.[$on_state].index = 0)
+    | .properties[0].value[0].type = "value"
+    | .properties[0].value[1].options.pattern = ".*"
+    | .properties[0].value[1].options.result.icon = $img_url + ".off.svg"
+    | .properties[0].value[1].options.result.index = 1
+    | .properties[0].value[1].type = "regex"
     '
 
   jq -n \

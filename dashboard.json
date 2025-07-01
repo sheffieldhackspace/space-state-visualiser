@@ -104,6 +104,38 @@
                 ]
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "eng_motion"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "1": {
+                        "icon": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_floor.on.svg",
+                        "index": 0
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "pattern": ".*",
+                      "result": {
+                        "icon": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_floor.off.svg",
+                        "index": 1
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -580,9 +612,9 @@
                   "fixed": "transparent"
                 },
                 "path": {
-                  "field": "eng_floor",
+                  "field": "eng_motion",
                   "fixed": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_floor.NA.svg",
-                  "mode": "fixed"
+                  "mode": "field"
                 }
               },
               "constraint": {
