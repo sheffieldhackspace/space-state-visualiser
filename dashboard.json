@@ -168,6 +168,38 @@
                 ]
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "eng_printer2"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "connected": {
+                        "icon": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_printer2.on.svg",
+                        "index": 0
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "pattern": ".*",
+                      "result": {
+                        "icon": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_printer2.off.svg",
+                        "index": 1
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -754,7 +786,7 @@
                 "path": {
                   "field": "eng_printer2",
                   "fixed": "https://server.alifeee.net/static/shhm/state/objects.engineRoom_printer2.NA.svg",
-                  "mode": "fixed"
+                  "mode": "field"
                 }
               },
               "constraint": {
@@ -912,7 +944,7 @@
           },
           "fields": [
             {
-              "jsonPath": "$.SHHNoT.engineRoom.node.printer1",
+              "jsonPath": "$.SHHNoT.engineRoom.node.printer2",
               "name": "eng_printer2"
             },
             {
