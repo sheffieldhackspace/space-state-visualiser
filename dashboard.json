@@ -852,16 +852,6 @@
               "name": "eng_printer2"
             },
             {
-              "jsonPath": "$.SHHNoT.engineRoom.node.printer1",
-              "language": "jsonpath",
-              "name": "eng_printer1"
-            },
-            {
-              "jsonPath": "$.SHHNoT.engineroom.lights.main.tele.LWT",
-              "language": "jsonpath",
-              "name": "eng_lights"
-            },
-            {
               "jsonPath": "$.SHHNoT.engineroom.sensor.engcam1.motion",
               "language": "jsonpath",
               "name": "eng_motion"
