@@ -251,4 +251,8 @@ cat dashboard.json \
 
 ### Add all elements
 
-do this manually for now. shouldn't be too hard.
+create list of commands to generate elements (you have to manually set the names)
+
+```bash
+ls | grep objects | sed -E s'/objects\.//; /\.(off|on)/d; s/\.NA\.png//; s+^+el_json=$(make_element_json https://server.alifeee.net/static/shhm/state/objects. +; s/$/ NAME)/'
+```
