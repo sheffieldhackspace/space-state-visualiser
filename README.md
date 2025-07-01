@@ -154,65 +154,73 @@ An example of an override. This override changes the icons of anything which is 
 ### Create new element
 
 ```bash
-name="com_tv"
-id="Commons_TVDisplay"
-URL_BASE="https://server.alifeee.net/static/shhm/state/objects."
+function make_element_json() {
+  URL_BASE="${1}"
+  id="${2}"
+  name="${3}"
 
-config_element='.
-| .background.color.fixed = "transparent"
-| .border.color.fixed = "transparent"
-| .config.fill.fixed = "transparent"
-| .config.path.fixed = $img_url + ".NA.svg"
-| .config.path.field = $name
-| .config.path.mode = "fixed"
-| .constraint.horizontal = "left"
-| .constraint.vertical = "top"
-| .links = []
-| .name = $name
-| .placement.height = 540
-| .placement.width = 540
-| .placement.left = 0
-| .placement.rotation = 0
-| .placement.top = 0
-| .type = "icon"
-'
+  config_element='.
+    | .background.color.fixed = "transparent"
+    | .border.color.fixed = "transparent"
+    | .config.fill.fixed = "transparent"
+    | .config.path.fixed = $img_url + ".NA.svg"
+    | .config.path.field = $name
+    | .config.path.mode = "fixed"
+    | .constraint.horizontal = "left"
+    | .constraint.vertical = "top"
+    | .links = []
+    | .name = $name
+    | .placement.height = 540
+    | .placement.width = 540
+    | .placement.left = 0
+    | .placement.rotation = 0
+    | .placement.top = 0
+    | .type = "icon"
+    '
+  jq -n \
+    --arg name "${name}" \
+    --arg img_url "${URL_BASE}${id}" \
+    "${config_element}"
+}
 
 el_json=$(
-  jq -n \
-  --arg name "${name}" \
-  --arg img_url "${URL_BASE}${id}" \
-  "${config_element}"
+  make_element_json "https://server.alifeee.net/static/shhm/state/objects." "Commons_TVDisplay" "com_tv"
 )
 echo "${el_json}" | jq
+
 ```
 
 ### Create new override
 
 ```bash
-name="eng_bench"
-URL_BASE="https://server.alifeee.net/static/shhm/state/objects."
-id="engineRoom_bench"
-on_state="ON"
+function make_override_json() {
+  URL_BASE="${1}"
+  id="${2}"
+  name="${3}"
+  on_state="${4}"
 
-config_override='.
-| .matcher.id = "byName"
-| .matcher.options = $name
-| .properties.id = "mappings"
-| .properties.value[0].type = "value"
-| .properties.value[0].options |= (.[$on_state].index = 0)
-| .properties.value[0].options |= (.[$on_state].icon = $img_url + ".on.svg")
-| .properties.value[1].type = "regex"
-| .properties.value[1].options.pattern = ".*"
-| .properties.value[1].options.result.index = 1
-| .properties.value[1].options.result.icon = $img_url + ".off.svg"
-'
+  config_override='.
+    | .matcher.id = "byName"
+    | .matcher.options = $name
+    | .properties.id = "mappings"
+    | .properties.value[0].type = "value"
+    | .properties.value[0].options |= (.[$on_state].index = 0)
+    | .properties.value[0].options |= (.[$on_state].icon = $img_url + ".on.svg")
+    | .properties.value[1].type = "regex"
+    | .properties.value[1].options.pattern = ".*"
+    | .properties.value[1].options.result.index = 1
+    | .properties.value[1].options.result.icon = $img_url + ".off.svg"
+    '
+
+  jq -n \
+    --arg name "${name}" \
+    --arg img_url "${URL_BASE}${id}" \
+    --arg on_state "${on_state}" \
+    "${config_override}"
+}
 
 ovrd_json=$(
-  jq -n \
-  --arg name "${name}" \
-  --arg img_url "${URL_BASE}${id}" \
-  --arg on_state "${on_state}" \
-  "${config_override}"
+  make_override_json "https://server.alifeee.net/static/shhm/state/objects." "engineRoom_bench" "eng_bench" "ON"
 )
 echo "${ovrd_json}" | jq
 ```
@@ -237,4 +245,10 @@ cat dashboard.json \
       end
     )' \
   | sponge dashboard.json
+./set_dashboard "${dashboard_id}" dashboard.json
+./get_dashboard "${dashboard_id}" > dashboard.json
 ```
+
+### Add all elements
+
+do this manually for now. shouldn't be too hard.
