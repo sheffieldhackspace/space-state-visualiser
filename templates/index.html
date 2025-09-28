@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" charset="utf-8">
+      listeners = [];
+
+      // update image with ID with state (NA, on, or off)
+      function update_image(listener, state) {
+        id = listener["id"];
+        url = "/static/icons/" + id + "." + state + ".png";
+
+        console.groupCollapsed(`update <${id}> to <${state}>`);
+        console.log(listener);
+        console.log("url: " + window.location + url);
+        console.groupEnd();
+
+        let image = document.getElementById(id);
+        if (!image) {
+          image = document.createElement("img");
+          image.setAttribute("id", id);
+          if (listener["z"]) {
+            image.style.zIndex = listener["z"];
+          }
+          document.getElementById("state").appendChild(image);
+        }
+        image.setAttribute("src", url);
+      }
+
+      var socket = io();
+      socket.on("connect", function () {
+        // socket.emit("my event", { data: "I'm connected!" });
+      });
+      socket.on("status-update", function (data) {
+        listener = data[0];
+        state = data[1];
+        update_image(listener, state);
+      });
+
+      fetch("/listeners.json")
+        .then((data) => data.json())
+        .catch(() => console.log("failed to load listeners"))
+        .then((json) => {
+          listeners = json;
+          console.log("got listeners, ", json);
+          listeners.forEach((listener) => {
+            update_image(listener, "NA");
+          });
+        });
+    </script>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background-color: black;
+        z-index: -1001;
+        position: relative;
+      }
+      #state {
+        position: relative;
+        height: 100%;
+        width: 100%;
+      }
+      #state img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: auto;
+      }
+      #space {
+        z-index: -1000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="state">
+      <img id="space" src="/static/icons/space.png" />
+    </div>
+  </body>
+</html>
