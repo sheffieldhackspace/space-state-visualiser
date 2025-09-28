@@ -4,3 +4,6 @@
 # python
 /env
 /__pycache__
+
+# history
+/history.json

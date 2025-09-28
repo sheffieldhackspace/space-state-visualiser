@@ -48,7 +48,7 @@
           listeners = json;
           console.log("got listeners, ", json);
           listeners.forEach((listener) => {
-            update_image(listener, "NA");
+            update_image(listener, listener["lastState"] ?? "NA");
           });
         });
     </script>

@@ -88,9 +88,13 @@ def getlisteners():
 
 @mqtt.on_connect()
 def handle_connect(client, userdata, flags, rc):
-    # this doesn't do anything, see
+    # this doesn't do anything sometimes, see
     # https://stackoverflow.com/questions/64592277/flask-mqtt-on-connect-is-never-called-when-used-with-socketio
     # mqtt.subscribe("#")
+    for listener in listeners:
+        if listener["topic"] == "":
+            continue
+        mqtt.subscribe(listener["topic"])
     pass
 
 
@@ -110,17 +114,43 @@ def handle_mqtt_message(client, userdata, message):
             payload = payloadjson[jk]
 
         if payload == listener["msgON"]:
+            listener["lastState"] = "on"
             socketio.emit("status-update", data=[listener, "on"])
         elif payload == listener["msgOFF"]:
+            listener["lastState"] = "off"
             socketio.emit("status-update", data=[listener, "off"])
         else:
+            listener["lastState"] = "NA"
             socketio.emit("status-update", data=[listener, "NA"])
+
+        save_listener_state()
 
 
 @mqtt.on_log()
 def handle_logging(client, userdata, level, buf):
     print(level, buf)
 
+
+def save_listener_state():
+    states = []
+    for listener in listeners:
+        if ls := listener.get("lastState"):
+            states.append({"listenerid": listener["id"], "lastState": ls})
+    with open("history.json", "w", encoding="utf-8") as file:
+        json.dump(states, file)
+
+
+def load_listener_state():
+    with open("history.json", "r", encoding="utf-8") as file:
+        states = json.load(file)
+    for state in states:
+        for listener in listeners:
+            if listener["id"] == state["listenerid"]:
+                listener["lastState"] = state["lastState"]
+    print(listeners)
+
+
+load_listener_state()
 
 if __name__ == "__main__":
     mqtt.init_app(app)

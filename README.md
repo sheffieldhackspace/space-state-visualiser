@@ -22,3 +22,10 @@ test MQTT commands
 mosquitto_pub -h mosquitto.shhm.uk -t "SHHNoT/lights/room_d/command/switch:0" -m on
 mosquitto_pub -h mosquitto.shhm.uk -t "state/SS/943CC682D374/input" -m '{"Door Open": false}'
 ```
+
+run in 'production'
+
+```bash
+pip install gunicorn eventlet
+gunicorn -b 0.0.0.0 --worker-class eventlet -w 1 server:app
+```
