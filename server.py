@@ -90,7 +90,8 @@ def getlisteners():
 def handle_connect(client, userdata, flags, rc):
     # this doesn't do anything, see
     # https://stackoverflow.com/questions/64592277/flask-mqtt-on-connect-is-never-called-when-used-with-socketio
-    mqtt.subscribe("#")
+    # mqtt.subscribe("#")
+    pass
 
 
 @mqtt.on_message()
