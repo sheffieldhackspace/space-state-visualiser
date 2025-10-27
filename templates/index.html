@@ -7,6 +7,7 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript" charset="utf-8">
+      {% if do_socket %}
       listeners = [];
 
       // update image with ID with state (NA, on, or off)
@@ -51,6 +52,7 @@
       //       update_image(listener, listener["lastState"] ?? "NA");
       //     });
       //   });
+      {% endif %}
     </script>
     <style>
       html,

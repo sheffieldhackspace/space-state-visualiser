@@ -1,5 +1,5 @@
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
 import jq
@@ -26,11 +26,17 @@ with open("listeners.json", "r", encoding="utf-8") as f:
 
 @app.route("/")
 def index():
+    do_socket = request.args.get("socket", 1)  # query param like ?socket=0 to disable
+    do_socket = False if do_socket in ["0", 0] else True
     for listener in listeners:
         if listener["topic"] == "":
             continue
         mqtt.subscribe(listener["topic"])
-    return render_template("index.html", listeners=listeners)
+    return render_template(
+        "index.html",
+        listeners=listeners,
+        do_socket=do_socket,
+    )
 
 
 @app.route("/listeners")
