@@ -2,6 +2,7 @@ import json
 from flask import Flask, render_template
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
+import jq
 
 app = Flask(__name__)
 
@@ -19,57 +20,8 @@ socketio = SocketIO(app)
 # while read -r id; do
 #   jq -n --arg id "${id}" '{id: $id, topic:"", msgON: "", msgOFF: ""}'
 # done <<<$(ls static/icons/ | grep '.NA.' | sed 's+\.NA\.png++') | jq --slurp
-listeners = [
-    {
-        "id": "objects.Basement_airFilter",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": "",
-    },
-    {"id": "objects.Basement_CNC", "topic": "", "msgON": "", "msgOFF": ""},
-    {
-        "id": "",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": "",
-        "z": -100,
-    },
-    {"id": "objects.Commons_amplifier", "topic": "", "msgON": "", "msgOFF": ""},
-    {
-        "id": "objects.Commons_door",
-        "topic": "state/SS/943CC682D374/input",
-        "jsonKey": "Door Open",
-        "msgON": True,
-        "msgOFF": False,
-    },
-    {
-        "id": "objects.Commons_floor",
-        "topic": "SHHNoT/lights/room_d/command/switch:0",
-        "msgON": "on",
-        "msgOFF": "off",
-        "z": -100,
-    },
-    {"id": "objects.Commons_heater2", "topic": "", "msgON": "", "msgOFF": ""},
-    {"id": "objects.Commons_lock1", "topic": "", "msgON": "", "msgOFF": ""},
-    {"id": "objects.Commons_lock2", "topic": "", "msgON": "", "msgOFF": ""},
-    {"id": "objects.Commons_TVDisplay", "topic": "", "msgON": "", "msgOFF": ""},
-    {
-        "id": "objects.engineRoom_bench",
-        "topic": "SHHNoT/sockets/bench/stat/POWER",
-        "msgON": "ON",
-        "msgOFF": "OFF",
-    },
-    {
-        "id": "objects.engineRoom_floor",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": "",
-        "z": -100,
-    },
-    {"id": "objects.engineRoom_laserCutter", "topic": "", "msgON": "", "msgOFF": ""},
-    {"id": "objects.engineRoom_printer1", "topic": "", "msgON": "", "msgOFF": ""},
-    {"id": "objects.engineRoom_printer2", "topic": "", "msgON": "", "msgOFF": ""},
-]
+with open("listeners.json", "r", encoding="utf-8") as f:
+    listeners = json.load(f)
 
 
 @app.route("/")
@@ -109,14 +61,20 @@ def handle_mqtt_message(client, userdata, message):
             "got message for %s: //%s %s", listener["id"], message.topic, payload
         )
 
-        if jk := listener.get("jsonKey", ""):
+        if jk := listener.get("jq", ""):
             payloadjson = json.loads(payload)
-            payload = payloadjson[jk]
+            payload = jq.compile(jk).input_value(payloadjson).first()
 
-        if payload == listener["msgON"]:
+        # convert comparisons to arrays
+        if not isinstance(listener["msgON"], list):
+            listener["msgON"] = [listener["msgON"]]
+        if not isinstance(listener["msgOFF"], list):
+            listener["msgOFF"] = [listener["msgOFF"]]
+
+        if payload in listener["msgON"]:
             listener["lastState"] = "on"
             socketio.emit("status-update", data=[listener, "on"])
-        elif payload == listener["msgOFF"]:
+        elif payload in listener["msgOFF"]:
             listener["lastState"] = "off"
             socketio.emit("status-update", data=[listener, "off"])
         else:

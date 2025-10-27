@@ -1,0 +1,128 @@
+[
+    {
+        "id": "downstairs_RoomA_door",
+        "topic": "state/SS/943CC682D374/input",
+        "jq": ".\"Door Open\"",
+        "msgON": true,
+        "msgOFF": false
+    },
+    {
+        "id": "downstairs_RoomA_floor",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": "",
+        "z": -100
+    },
+    {
+        "id": "downstairs_RoomA_lock",
+        "topic": "state/SS/943CC682D374/door",
+        "jq": ".state",
+        "msgON": [
+            "UNLOCKING",
+            "UNLOCKED"
+        ],
+        "msgOFF": [
+            "LOCKING",
+            "LOCKED"
+        ]
+    },
+    {
+        "id": "downstairs_RoomB1_floor",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": "",
+        "z": -100
+    },
+    {
+        "id": "downstairs_RoomB2_3DPrinterA",
+        "topic": "SHHNoT/network/switch/portname/PP3_-_3D_printer_1",
+        "msgON": "up",
+        "msgOFF": "down"
+    },
+    {
+        "id": "downstairs_RoomB2_3DPrinterB",
+        "topic": "SHHNoT/network/switch/portname/PP4_-_3D_printer_2",
+        "msgON": "up",
+        "msgOFF": "down",
+        "z": -20
+    },
+    {
+        "id": "downstairs_RoomB2_3DPrinterC",
+        "topic": "SHHNoT/network/switch/portname/PP21_-_3D_printer_3",
+        "msgON": "up",
+        "msgOFF": "down",
+        "z": -25
+    },
+    {
+        "id": "downstairs_RoomB2_floor",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": "",
+        "z": -100
+    },
+    {
+        "id": "downstairs_RoomC_floor",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": "",
+        "z": -100
+    },
+    {
+        "id": "RoomD_door",
+        "topic": "SHHNoT/door_d/stat/RESULT",
+        "jq": ".Switch1.Action",
+        "msgON": "OFF",
+        "msgOFF": "ON"
+    },
+    {
+        "id": "RoomD_floor",
+        "topic": "SHHNoT/lights/room_d/command/switch:0",
+        "msgON": "on",
+        "msgOFF": "off",
+        "z": -50
+    },
+    {
+        "id": "RoomD_lock",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": ""
+    },
+    {
+        "id": "RoomD_projector",
+        "topic": "SHHNoT/network/switch/portname/Projector",
+        "msgON": "up",
+        "msgOFF": "down"
+    },
+    {
+        "id": "RoomD_TV",
+        "topic": "SHHNoT/network/switch/portname/PP20_-_display",
+        "msgON": "up",
+        "msgOFF": "down"
+    },
+    {
+        "id": "RoomD_workbench",
+        "topic": "SHHNoT/sockets/bench/stat/POWER",
+        "msgON": "ON",
+        "msgOFF": "OFF"
+    },
+    {
+        "id": "RoomE_floor",
+        "topic": "SHHNoT/lights/room_e/command/switch:0",
+        "msgON": "on",
+        "msgOFF": "off",
+        "z": -50
+    },
+    {
+        "id": "RoomE_LaserCutter",
+        "topic": "SHHNoT/network/switch/portname/PP2_-_Laser_Cutter",
+        "msgON": "up",
+        "msgOFF": "down"
+    },
+    {
+        "id": "RoomF_floor",
+        "topic": "SHHNoT/lights/room_f/command/switch:0",
+        "msgON": "on",
+        "msgOFF": "off",
+        "z": -50
+    }
+]
