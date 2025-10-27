@@ -30,7 +30,7 @@ def index():
         if listener["topic"] == "":
             continue
         mqtt.subscribe(listener["topic"])
-    return render_template("index.html")
+    return render_template("index.html", listeners=listeners)
 
 
 @app.route("/listeners")

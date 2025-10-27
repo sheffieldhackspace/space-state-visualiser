@@ -41,16 +41,16 @@
         update_image(listener, state);
       });
 
-      fetch("/listeners.json")
-        .then((data) => data.json())
-        .catch(() => console.log("failed to load listeners"))
-        .then((json) => {
-          listeners = json;
-          console.log("got listeners, ", json);
-          listeners.forEach((listener) => {
-            update_image(listener, listener["lastState"] ?? "NA");
-          });
-        });
+      // fetch("/listeners.json")
+      //   .then((data) => data.json())
+      //   .catch(() => console.log("failed to load listeners"))
+      //   .then((json) => {
+      //     listeners = json;
+      //     console.log("got listeners, ", json);
+      //     listeners.forEach((listener) => {
+      //       update_image(listener, listener["lastState"] ?? "NA");
+      //     });
+      //   });
     </script>
     <style>
       html,
@@ -84,6 +84,18 @@
   <body>
     <div id="state">
       <img id="space" src="/static/icons/space.jpg" />
+      {% for listener in listeners %}
+      <img
+        id="{{ listener.id }}"
+        src="/static/icons/{{ listener.id }}.{% if listener.lastState %}{{ listener.lastState }}{% else %}NA{% endif %}.png"
+        {%if
+        listener.z
+        %}style="z-index: {{ listener.z }}"
+        {%
+        endif
+        %}
+      />
+      {% endfor %}
     </div>
   </body>
 </html>
