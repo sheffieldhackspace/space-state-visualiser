@@ -33,8 +33,18 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/listeners.json")
+@app.route("/listeners")
 def getlisteners():
+    colnames = ["id", "lastState", "topic", "jq", "msgON", "msgOFF"]
+    for listener in listeners:
+        for key in listener.keys():
+            if key not in colnames:
+                colnames.append(key)
+    return render_template("table.html", colnames=colnames, records=listeners)
+
+
+@app.route("/listeners.json")
+def getlistenersjson():
     return listeners
 
 

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+      }
+      a {
+        color: pink;
+      }
+      td {
+        padding: 0.25rem;
+      }
+      /* lastState cells */
+      td:nth-child(2) {
+        background-color: lightgray;
+      }
+      td[data-value="on"]:nth-child(2) {
+        background-color: lightgreen;
+      }
+      td[data-value="off"]:nth-child(2) {
+        background-color: lightcoral;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Active listeners</h1>
+      <p>
+        <a href="/listeners.json">view json</a> · <a href="/">back to viz</a> ·
+        <a href="https://github.com/sheffieldhackspace/space-state-visualiser"
+          >view source</a
+        >
+      </p>
+      <p>This does not auto-refresh like the space state page.</p>
+    </header>
+    <main>
+      <table border="1">
+        <thead>
+          <tr>
+            {% for col in colnames %}
+            <th>{{ col }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for record in records %}
+          <tr>
+            {% for col in colnames %}
+            <td data-value="{{ record[col] }}">{{ record[col] }}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>
