@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" charset="utf-8">
+      listeners = [];
+
+      // update table row with ID with state (NA, on, or off)
+      function update_table(listener, state) {
+        id = listener["id"];
+
+        console.groupCollapsed(`update <${id}> to <${state}>`);
+        console.log("listener", listener);
+        console.log("state", state);
+        console.groupEnd();
+
+        let td = document.querySelector(`#${id} td[data-name=lastState]`);
+        td.innerHTML = state;
+        td.dataset.value = state;
+      }
+
+      var socket = io();
+      socket.on("connect", function () {
+        // socket.emit("my event", { data: "I'm connected!" });
+      });
+      socket.on("status-update", function (data) {
+        listener = data[0];
+        state = data[1];
+        update_table(listener, state);
+      });
+    </script>
     <style>
       body {
         background-color: black;
@@ -46,9 +78,11 @@
         </thead>
         <tbody>
           {% for record in records %}
-          <tr>
+          <tr id="{{ record.id }}">
             {% for col in colnames %}
-            <td data-value="{{ record[col] }}">{{ record[col] }}</td>
+            <td data-name="{{ col }}" data-value="{{ record[col] }}">
+              {{ record[col] }}
+            </td>
             {% endfor %}
           </tr>
           {% endfor %}
