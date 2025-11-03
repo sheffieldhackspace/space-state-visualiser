@@ -1,0 +1,16 @@
+[Unit]
+Description=Sheffield Hackspace Space State Visualiser
+After=network.target
+
+[Service]
+User=spacestate
+Group=spacestate
+
+ExecStart=/usr/shhm/space-state-visualiser/env/bin/gunicorn -b 0.0.0.0 --worker-class eventlet -w 1 server:app
+WorkingDirectory=/usr/shhm/space-state-visualiser
+
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -50,3 +50,18 @@ run in 'production'
 pip install gunicorn eventlet
 gunicorn -b 0.0.0.0 --worker-class eventlet -w 1 server:app
 ```
+
+run with systemd
+
+```bash
+# set up permissions
+sudo useradd -r -s /bin/false spacestate
+sudo chmod g+w history.json
+sudo chown $USER:spacestate history.json
+
+# turn on systemd service
+sudo cp space-state-visualiser.service /etc/systemd/system/space-state-visualiser.service
+sudo systemctl enable space-state-visualiser.service
+sudo systemctl start space-state-visualiser.service
+sudo systemctl status space-state-visualiser.service
+```
