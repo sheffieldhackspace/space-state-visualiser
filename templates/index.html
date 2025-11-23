@@ -54,6 +54,17 @@
       //   });
       {% endif %}
     </script>
+    <script>
+      // clock
+      let interval = setInterval(function () {
+        updateclock();
+      }, 1000);
+
+      function updateclock() {
+        var d = new Date();
+        document.getElementById("clock").innerHTML = d.toLocaleTimeString();
+      }
+    </script>
     <style>
       html,
       body {
@@ -82,9 +93,19 @@
       #space {
         z-index: -1000;
       }
+      #clock {
+        position: absolute;
+        margin: 2rem 7rem;
+        top: 0;
+        right: 1rem;
+        color: white;
+        font-size: 4rem;
+        font-family: "Courier New", Courier, monospace;
+      }
     </style>
   </head>
   <body>
+    <p id="clock"></p>
     <div id="state">
       <img id="space" src="/static/icons/space.jpg" />
       {% for listener in listeners %}
