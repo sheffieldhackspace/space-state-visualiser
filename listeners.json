@@ -62,9 +62,10 @@
     },
     {
         "id": "downstairs_RoomC_floor",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": "",
+        "topic": "SHHNoT/lights/room_c/events/rpc",
+        "jq": ".params.\"switch:0\".output",
+        "msgON": true,
+        "msgOFF": false,
         "z": -100
     },
     {
