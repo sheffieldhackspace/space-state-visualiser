@@ -83,12 +83,6 @@
         "z": -50
     },
     {
-        "id": "RoomD_lock",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": ""
-    },
-    {
         "id": "RoomD_projector",
         "topic": "SHHNoT/network/switch/portname/Projector",
         "msgON": "up",
