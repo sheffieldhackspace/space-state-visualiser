@@ -76,9 +76,10 @@
     },
     {
         "id": "RoomD_floor",
-        "topic": "SHHNoT/lights/room_d/command/switch:0",
-        "msgON": "on",
-        "msgOFF": "off",
+        "topic": "SHHNoT/lights/room_d/events/rpc",
+        "jq": ".params.\"switch:0\".output",
+        "msgON": true,
+        "msgOFF": false,
         "z": -50
     },
     {
@@ -107,9 +108,10 @@
     },
     {
         "id": "RoomE_floor",
-        "topic": "SHHNoT/lights/room_e/command/switch:0",
-        "msgON": "on",
-        "msgOFF": "off",
+        "topic": "SHHNoT/lights/room_e/events/rpc",
+        "jq": ".params.\"switch:0\".output",
+        "msgON": true,
+        "msgOFF": false,
         "z": -50
     },
     {
@@ -120,9 +122,10 @@
     },
     {
         "id": "RoomF_floor",
-        "topic": "SHHNoT/lights/room_f/command/switch:0",
-        "msgON": "on",
-        "msgOFF": "off",
+        "topic": "SHHNoT/lights/room_f/events/rpc",
+        "jq": ".params.\"switch:0\".output",
+        "msgON": true,
+        "msgOFF": false,
         "z": -50
     }
 ]
