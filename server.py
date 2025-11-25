@@ -93,6 +93,10 @@ def handle_mqtt_message(client, userdata, message):
         elif payload in listener["msgOFF"]:
             listener["lastState"] = "off"
             socketio.emit("status-update", data=[listener, "off"])
+        elif payload is None:
+            # jq could not find object, message is probably about something else
+            # ignore and leave previous state active
+            pass
         else:
             listener["lastState"] = "NA"
             socketio.emit("status-update", data=[listener, "NA"])
