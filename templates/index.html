@@ -102,6 +102,25 @@
         font-size: 4rem;
         font-family: "Courier New", Courier, monospace;
       }
+      #statebuttons {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        gap: 1rem;
+        margin: 1rem;
+      }
+      #statebuttons a,
+      #statebuttons a:visited {
+        color: black;
+        background-color: white;
+        border-radius: 1rem;
+        padding: 1rem;
+        text-decoration: none;
+      }
+      #statebuttons a.active {
+        background-color: darkgreen;
+      }
     </style>
   </head>
   <body>
@@ -111,7 +130,7 @@
       {% for listener in listeners %}
       <img
         id="{{ listener.id }}"
-        src="/static/icons/{{ listener.id }}.{% if listener.lastState %}{{ listener.lastState }}{% else %}NA{% endif %}.png"
+        src="/static/icons/{{ listener.id }}.{% if view_state %}{{ view_state }}{% else %}{% if listener.lastState %}{{ listener.lastState }}{% else %}NA{% endif %}{% endif %}.png"
         {%if
         listener.z
         %}style="z-index: {{ listener.z }}"
@@ -121,5 +140,21 @@
       />
       {% endfor %}
     </div>
+    {% if view_state %}
+    <div id="statebuttons">
+      <a href="?state=NA" class="{% if view_state == 'NA' %}active{% endif %}">
+        NA
+      </a>
+      <a href="?state=on" class="{% if view_state == 'on' %}active{% endif %}">
+        on
+      </a>
+      <a
+        href="?state=off"
+        class="{% if view_state == 'off' %}active{% endif %}"
+      >
+        off
+      </a>
+    </div>
+    {% endif %}
   </body>
 </html>
