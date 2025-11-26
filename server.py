@@ -6,7 +6,7 @@ import jq
 
 app = Flask(__name__)
 
-app.config["MQTT_BROKER_URL"] = "mosquitto.shhm.uk"  # use the free broker from HIVEMQ
+app.config["MQTT_BROKER_URL"] = "mosquitto.shhm.uk"
 app.config["MQTT_BROKER_PORT"] = 1883  # default port for non-tls connection
 app.config["MQTT_KEEPALIVE"] = (
     5  # set the time interval for sending a ping to the broker to 5 seconds
