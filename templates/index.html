@@ -130,9 +130,9 @@
         // socket.emit("my event", { data: "I'm connected!" });
       });
       socket.on("status-update", function (data) {
-        listener = data[0];
-        state = data[1];
-        update_image(listener, state);
+        const listener = data[0];
+        const new_state = data[1];
+        update_image(listener, new_state);
       });
 
       // fetch("/listeners.json")
