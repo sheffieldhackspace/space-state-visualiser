@@ -56,14 +56,6 @@
       //   });
       {% endif %}
     </script>
-    <script>
-      // clock
-      const clock = document.getElementById("clock");
-      let interval = setInterval(function () {
-        clock.textContent = new Date().toLocaleTimeString("en-GB");
-      }, 1000);
-
-    </script>
     <style>
       html,
       body {
@@ -155,5 +147,13 @@
       </a>
     </div>
     {% endif %}
+    <script>
+      // clock
+      const clock = document.getElementById("clock");
+      let interval = setInterval(function () {
+        clock.textContent = new Date().toLocaleTimeString("en-GB");
+      }, 1000);
+
+    </script>
   </body>
 </html>
