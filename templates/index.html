@@ -6,56 +6,6 @@
       integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
       crossorigin="anonymous"
     ></script>
-    <script type="text/javascript" charset="utf-8">
-      {% if do_socket %}
-      // listeners = [];
-
-      const state = document.getElementById("state");
-
-      function create_image_element(id, listener) {
-        const image = document.createElement("img");
-        image.setAttribute("id", id);
-        image.style.zIndex = listener["z"] ?? undefined;
-        state.appendChild(image);
-        return image;
-      }
-
-      // update image with ID with state (NA, on, or off)
-      function update_image(listener, state) {
-        const id = listener["id"];
-        const url = "/static/icons/" + id + "." + state + ".png";
-
-        console.groupCollapsed(`update <${id}> to <${state}>`);
-        console.log(listener);
-        console.log("url: " + window.location + url);
-        console.groupEnd();
-
-        const image = document.getElementById(id) ?? create_image_element(id, listener);
-        image.setAttribute("src", url);
-      }
-
-      const socket = io();
-      socket.on("connect", function () {
-        // socket.emit("my event", { data: "I'm connected!" });
-      });
-      socket.on("status-update", function (data) {
-        listener = data[0];
-        state = data[1];
-        update_image(listener, state);
-      });
-
-      // fetch("/listeners.json")
-      //   .then((data) => data.json())
-      //   .catch(() => console.log("failed to load listeners"))
-      //   .then((json) => {
-      //     listeners = json;
-      //     console.log("got listeners, ", json);
-      //     listeners.forEach((listener) => {
-      //       update_image(listener, listener["lastState"] ?? "NA");
-      //     });
-      //   });
-      {% endif %}
-    </script>
     <style>
       html,
       body {
@@ -147,6 +97,56 @@
       </a>
     </div>
     {% endif %}
+    <script type="text/javascript" charset="utf-8">
+      {% if do_socket %}
+      // listeners = [];
+
+      const state = document.getElementById("state");
+
+      function create_image_element(id, listener) {
+        const image = document.createElement("img");
+        image.setAttribute("id", id);
+        image.style.zIndex = listener["z"] ?? undefined;
+        state.appendChild(image);
+        return image;
+      }
+
+      // update image with ID with state (NA, on, or off)
+      function update_image(listener, state) {
+        const id = listener["id"];
+        const url = "/static/icons/" + id + "." + state + ".png";
+
+        console.groupCollapsed(`update <${id}> to <${state}>`);
+        console.log(listener);
+        console.log("url: " + window.location + url);
+        console.groupEnd();
+
+        const image = document.getElementById(id) ?? create_image_element(id, listener);
+        image.setAttribute("src", url);
+      }
+
+      const socket = io();
+      socket.on("connect", function () {
+        // socket.emit("my event", { data: "I'm connected!" });
+      });
+      socket.on("status-update", function (data) {
+        listener = data[0];
+        state = data[1];
+        update_image(listener, state);
+      });
+
+      // fetch("/listeners.json")
+      //   .then((data) => data.json())
+      //   .catch(() => console.log("failed to load listeners"))
+      //   .then((json) => {
+      //     listeners = json;
+      //     console.log("got listeners, ", json);
+      //     listeners.forEach((listener) => {
+      //       update_image(listener, listener["lastState"] ?? "NA");
+      //     });
+      //   });
+      {% endif %}
+    </script>
     <script>
       // clock
       const clock = document.getElementById("clock");
