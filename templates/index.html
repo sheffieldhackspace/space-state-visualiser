@@ -8,31 +8,33 @@
     ></script>
     <script type="text/javascript" charset="utf-8">
       {% if do_socket %}
-      listeners = [];
+      // listeners = [];
+
+      const state = document.getElementById("state");
+
+      function create_image_element(id, listener) {
+        const image = document.createElement("img");
+        image.setAttribute("id", id);
+        image.style.zIndex = listener["z"] ?? undefined;
+        state.appendChild(image);
+        return image;
+      }
 
       // update image with ID with state (NA, on, or off)
       function update_image(listener, state) {
-        id = listener["id"];
-        url = "/static/icons/" + id + "." + state + ".png";
+        const id = listener["id"];
+        const url = "/static/icons/" + id + "." + state + ".png";
 
         console.groupCollapsed(`update <${id}> to <${state}>`);
         console.log(listener);
         console.log("url: " + window.location + url);
         console.groupEnd();
 
-        let image = document.getElementById(id);
-        if (!image) {
-          image = document.createElement("img");
-          image.setAttribute("id", id);
-          if (listener["z"]) {
-            image.style.zIndex = listener["z"];
-          }
-          document.getElementById("state").appendChild(image);
-        }
+        const image = document.getElementById(id) ?? create_image_element(id, listener);
         image.setAttribute("src", url);
       }
 
-      var socket = io();
+      const socket = io();
       socket.on("connect", function () {
         // socket.emit("my event", { data: "I'm connected!" });
       });
@@ -56,14 +58,11 @@
     </script>
     <script>
       // clock
+      const clock = document.getElementById("clock");
       let interval = setInterval(function () {
-        updateclock();
+        clock.textContent = new Date().toLocaleTimeString("en-GB");
       }, 1000);
 
-      function updateclock() {
-        var d = new Date();
-        document.getElementById("clock").innerHTML = d.toLocaleTimeString();
-      }
     </script>
     <style>
       html,
