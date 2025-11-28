@@ -6,6 +6,42 @@
       integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
       crossorigin="anonymous"
     ></script>
+    <script type="text/javascript" charset="utf-8">
+      {% if do_socket %}
+      // update image with ID with state (NA, on, or off)
+      function update_image(listener, state) {
+        const id = listener["id"];
+        const url = "/static/icons/" + id + "." + state + ".png";
+
+        console.groupCollapsed(`update <${id}> to <${state}>`);
+        console.log(listener);
+        console.log("url: " + window.location + url);
+        console.groupEnd();
+
+        const image = document.getElementById(id);
+        image.setAttribute("src", url);
+      }
+
+      const socket = io();
+      socket.on("connect", function () {
+        // socket.emit("my event", { data: "I'm connected!" });
+      });
+      socket.on("status-update", function (data) {
+        const listener = data[0];
+        const new_state = data[1];
+        update_image(listener, new_state);
+      });
+      {% endif %}
+    </script>
+    <script>
+      // clock
+      document.addEventListener("DOMContentLoaded", () => {
+        const clock = document.getElementById("clock");
+        let interval = setInterval(function () {
+          clock.textContent = new Date().toLocaleTimeString("en-GB");
+        }, 1000);
+      });
+    </script>
     <style>
       html,
       body {
@@ -97,41 +133,5 @@
       </a>
     </div>
     {% endif %}
-    <script type="text/javascript" charset="utf-8">
-      {% if do_socket %}
-      // update image with ID with state (NA, on, or off)
-      function update_image(listener, state) {
-        const id = listener["id"];
-        const url = "/static/icons/" + id + "." + state + ".png";
-
-        console.groupCollapsed(`update <${id}> to <${state}>`);
-        console.log(listener);
-        console.log("url: " + window.location + url);
-        console.groupEnd();
-
-        const image = document.getElementById(id);
-        image.setAttribute("src", url);
-      }
-
-      const socket = io();
-      socket.on("connect", function () {
-        // socket.emit("my event", { data: "I'm connected!" });
-      });
-      socket.on("status-update", function (data) {
-        const listener = data[0];
-        const new_state = data[1];
-        update_image(listener, new_state);
-      });
-      {% endif %}
-    </script>
-    <script>
-      // clock
-      document.addEventListener("DOMContentLoaded", () => {
-        const clock = document.getElementById("clock");
-        let interval = setInterval(function () {
-          clock.textContent = new Date().toLocaleTimeString("en-GB");
-        }, 1000);
-      });
-    </script>
   </body>
 </html>
