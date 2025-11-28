@@ -8,62 +8,39 @@
     ></script>
     <script type="text/javascript" charset="utf-8">
       {% if do_socket %}
-      listeners = [];
-
       // update image with ID with state (NA, on, or off)
       function update_image(listener, state) {
-        id = listener["id"];
-        url = "/static/icons/" + id + "." + state + ".png";
+        const id = listener["id"];
+        const url = "/static/icons/" + id + "." + state + ".png";
 
         console.groupCollapsed(`update <${id}> to <${state}>`);
         console.log(listener);
         console.log("url: " + window.location + url);
         console.groupEnd();
 
-        let image = document.getElementById(id);
-        if (!image) {
-          image = document.createElement("img");
-          image.setAttribute("id", id);
-          if (listener["z"]) {
-            image.style.zIndex = listener["z"];
-          }
-          document.getElementById("state").appendChild(image);
-        }
+        const image = document.getElementById(id);
         image.setAttribute("src", url);
       }
 
-      var socket = io();
+      const socket = io();
       socket.on("connect", function () {
         // socket.emit("my event", { data: "I'm connected!" });
       });
       socket.on("status-update", function (data) {
-        listener = data[0];
-        state = data[1];
-        update_image(listener, state);
+        const listener = data[0];
+        const new_state = data[1];
+        update_image(listener, new_state);
       });
-
-      // fetch("/listeners.json")
-      //   .then((data) => data.json())
-      //   .catch(() => console.log("failed to load listeners"))
-      //   .then((json) => {
-      //     listeners = json;
-      //     console.log("got listeners, ", json);
-      //     listeners.forEach((listener) => {
-      //       update_image(listener, listener["lastState"] ?? "NA");
-      //     });
-      //   });
       {% endif %}
     </script>
     <script>
       // clock
-      let interval = setInterval(function () {
-        updateclock();
-      }, 1000);
-
-      function updateclock() {
-        var d = new Date();
-        document.getElementById("clock").innerHTML = d.toLocaleTimeString();
-      }
+      document.addEventListener("DOMContentLoaded", () => {
+        const clock = document.getElementById("clock");
+        let interval = setInterval(function () {
+          clock.textContent = new Date().toLocaleTimeString("en-GB");
+        }, 1000);
+      });
     </script>
     <style>
       html,
