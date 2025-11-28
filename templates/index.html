@@ -99,18 +99,6 @@
     {% endif %}
     <script type="text/javascript" charset="utf-8">
       {% if do_socket %}
-      // listeners = [];
-
-      const state = document.getElementById("state");
-
-      function create_image_element(id, listener) {
-        const image = document.createElement("img");
-        image.setAttribute("id", id);
-        image.style.zIndex = listener["z"] ?? undefined;
-        state.appendChild(image);
-        return image;
-      }
-
       // update image with ID with state (NA, on, or off)
       function update_image(listener, state) {
         const id = listener["id"];
@@ -121,7 +109,7 @@
         console.log("url: " + window.location + url);
         console.groupEnd();
 
-        const image = document.getElementById(id) ?? create_image_element(id, listener);
+        const image = document.getElementById(id);
         image.setAttribute("src", url);
       }
 
