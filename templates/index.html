@@ -122,17 +122,6 @@
         const new_state = data[1];
         update_image(listener, new_state);
       });
-
-      // fetch("/listeners.json")
-      //   .then((data) => data.json())
-      //   .catch(() => console.log("failed to load listeners"))
-      //   .then((json) => {
-      //     listeners = json;
-      //     console.log("got listeners, ", json);
-      //     listeners.forEach((listener) => {
-      //       update_image(listener, listener["lastState"] ?? "NA");
-      //     });
-      //   });
       {% endif %}
     </script>
     <script>
