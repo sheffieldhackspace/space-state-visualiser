@@ -30,6 +30,10 @@ def get_biggest_bbox(bbox1, *bboxes):
     return [x1, y1, x2, y2]
 
 
+# delete images in static/icons_crop
+for filename in os.listdir("static/icons_crop"):
+    os.unlink(f"static/icons_crop/{filename}")
+
 for image_id in image_ids:
     print(f"==== transforming {image_id} ====")
     imgNA = Image.open(f"static/icons/{image_id}.NA.png")
