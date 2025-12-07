@@ -3,8 +3,8 @@
         "id": "downstairs_RoomA_door",
         "topic": "state/SS/943CC682D374/input",
         "jq": ".\"Door Open\"",
-        "msgON": true,
-        "msgOFF": false
+        "msgON": false,
+        "msgOFF": true
     },
     {
         "id": "downstairs_RoomA_floor",
@@ -54,6 +54,13 @@
         "z": -25
     },
     {
+        "id": "downstairs_RoomB2_2DPrinterA",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": "",
+        "z": -30
+    },
+    {
         "id": "downstairs_RoomB2_floor",
         "topic": "",
         "msgON": "",
@@ -69,8 +76,15 @@
         "z": -100
     },
     {
+        "id": "fairyLights",
+        "topic": "SHHNoT/sockets/socket1/stat/POWER",
+        "msgON": "ON",
+        "msgOFF": "OFF",
+        "test": "SHHNoT/sockets/socket1/cmnd/power -m on"
+    },
+    {
         "id": "RoomD_door",
-        "topic": "SHHNoT/door_d/stat/RESULT",
+        "topic": "SHHNoT/sensor/door_d/stat/RESULT",
         "jq": ".Switch1.Action",
         "msgON": "OFF",
         "msgOFF": "ON"
@@ -82,6 +96,20 @@
         "msgON": true,
         "msgOFF": false,
         "z": -50
+    },
+    {
+        "id": "RoomD_heaterA",
+        "topic": "SHHNoT/sensor/heater1/stat/RESULT",
+        "jq": ".Switch1.Action",
+        "msgON": "ON",
+        "msgOFF": "OFF"
+    },
+    {
+        "id": "RoomD_heaterB",
+        "topic": "SHHNoT/sensor/heater2/stat/RESULT",
+        "jq": ".Switch1.Action",
+        "msgON": "ON",
+        "msgOFF": "OFF"
     },
     {
         "id": "RoomD_projector",
@@ -97,7 +125,8 @@
     },
     {
         "id": "RoomD_workbench",
-        "topic": "SHHNoT/sockets/bench/stat/POWER",
+        "topic": "SHHNoT/sensor/bench_sockets/stat/RESULT",
+        "jq": ".Switch1.Action",
         "msgON": "ON",
         "msgOFF": "OFF"
     },

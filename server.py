@@ -1,4 +1,6 @@
 import json
+import os
+import re
 from flask import Flask, render_template, request
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
@@ -17,12 +19,38 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 mqtt = Mqtt(app)
 socketio = SocketIO(app)
 
+
+def parse_listener_coordinates(listeners):
+    image_ids = sorted(
+        list(
+            set(
+                im.replace(".on.png", "").replace(".off.png", "").replace(".NA.png", "")
+                for im in os.listdir("static/icons_crop")
+            )
+        )
+    )
+    # edit IDs to add image coordinates
+    for listener in listeners:
+        id_ = listener["id"]
+        matching_ids = [imgid for imgid in image_ids if imgid.startswith(id_)]
+        if len(matching_ids) != 1:
+            raise ValueError(
+                f"could not find matching listener for {id_}. Look in static/icons_crop"
+            )
+        listener["id"] = matching_ids[0]
+        matches = re.search(r"([0-9]*)x([0-9]*)y$", matching_ids[0])
+        listener["x"] = int(matches.group(1))
+        listener["y"] = int(matches.group(2))
+    return listeners
+
+
 # can generate this from boilerplate with something like
 # while read -r id; do
 #   jq -n --arg id "${id}" '{id: $id, topic:"", msgON: "", msgOFF: ""}'
 # done <<<$(ls static/icons/ | grep '.NA.' | sed 's+\.NA\.png++') | jq --slurp
 with open("listeners.json", "r", encoding="utf-8") as f:
     listeners = json.load(f)
+    listeners = parse_listener_coordinates(listeners)
 
 
 @app.route("/")

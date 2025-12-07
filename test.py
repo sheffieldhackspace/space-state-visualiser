@@ -1,10 +1,12 @@
 import json
 from flask import Flask, render_template, request
+from server import parse_listener_coordinates
 
 app = Flask(__name__)
 
 with open("listeners.json", "r", encoding="utf-8") as f:
     listeners = json.load(f)
+    listeners = parse_listener_coordinates(listeners)
 
 
 @app.route("/")
