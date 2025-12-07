@@ -11,6 +11,7 @@
 
       // update table row with ID with state (NA, on, or off)
       function update_table(listener, state) {
+        console.log(`update ${listener} to ${state}`);
         id = listener["id"];
 
         console.groupCollapsed(`update <${id}> to <${state}>`);
