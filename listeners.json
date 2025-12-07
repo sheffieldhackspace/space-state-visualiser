@@ -54,6 +54,13 @@
         "z": -25
     },
     {
+        "id": "downstairs_RoomB2_2DPrinterA",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": "",
+        "z": -30
+    },
+    {
         "id": "downstairs_RoomB2_floor",
         "topic": "",
         "msgON": "",
@@ -69,6 +76,12 @@
         "z": -100
     },
     {
+        "id": "fairyLights",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": ""
+    },
+    {
         "id": "RoomD_door",
         "topic": "SHHNoT/door_d/stat/RESULT",
         "jq": ".Switch1.Action",
@@ -82,6 +95,18 @@
         "msgON": true,
         "msgOFF": false,
         "z": -50
+    },
+    {
+        "id": "RoomD_heaterA",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": ""
+    },
+    {
+        "id": "RoomD_heaterB",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": ""
     },
     {
         "id": "RoomD_projector",
