@@ -77,9 +77,10 @@
     },
     {
         "id": "fairyLights",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": ""
+        "topic": "SHHNoT/sockets/socket1/stat/POWER",
+        "msgON": "ON",
+        "msgOFF": "OFF",
+        "test": "SHHNoT/sockets/socket1/cmnd/power -m on"
     },
     {
         "id": "RoomD_door",
