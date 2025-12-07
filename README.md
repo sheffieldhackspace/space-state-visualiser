@@ -27,13 +27,8 @@ echo "[]" > history.json
 convert images
 
 ```bash
-# the info beamer Pi does not render images very well, so we downsize them to
-#   reduce the response times from 30s to 3s
-for file in ./*; do
-  fn="${file%.*}"; convert -resize 800x "${file}" "${fn}.webp"
-done
-scp ./*.webp sensepi:/usr/shhm/space-state-visualiser/static/icons/
-sed -i templates/index.html 's+png+webp+'
+# the info beamer Pi does not render images very well, so we crop them
+py image_transform.py
 ```
 
 Flask debug

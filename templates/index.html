@@ -51,21 +51,33 @@
         z-index: -1001;
         position: relative;
       }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       #state {
         position: relative;
-        height: 100%;
+        aspect-ratio: 1920/1080;
         width: 100%;
-        max-height: 100vh;
-      }
-      #state img {
-        position: absolute;
-        inset: 0;
         height: auto;
-        width: auto;
         max-width: 100%;
         max-height: 100%;
-        margin: auto;
+      }
+      #state img#space {
+        position: absolute;
+        aspect-ratio: 1920/1080;
         width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+      }
+      #state img.icon {
+        position: absolute;
+        height: auto;
+        width: auto;
+        left: var(--x);
+        top: var(--y);
       }
       #space {
         z-index: -1000;
@@ -103,17 +115,18 @@
   <body>
     <p id="clock"></p>
     <div id="state">
-      <img id="space" src="/static/icons/space.jpg" />
+      <img id="space" src="/static/space.jpg" />
       {% for listener in listeners %}
       <img
         id="{{ listener.id }}"
-        src="/static/icons/{{ listener.id }}.{% if view_state %}{{ view_state }}{% else %}{% if listener.lastState %}{{ listener.lastState }}{% else %}NA{% endif %}{% endif %}.png"
-        {%if
+        class="icon"
+        src="/static/icons_crop/{{ listener.id }}.{% if view_state %}{{ view_state }}{% else %}{% if listener.lastState %}{{ listener.lastState }}{% else %}NA{% endif %}{% endif %}.png"
+        style="--x:{{ listener.x / 1920 * 100 }}%; --y:{{ listener.y / 1080 * 100 }}%; {%if
         listener.z
-        %}style="z-index: {{ listener.z }}"
+        %}z-index: {{ listener.z }}
         {%
         endif
-        %}
+        %}"
       />
       {% endfor %}
     </div>
