@@ -3,8 +3,8 @@
         "id": "downstairs_RoomA_door",
         "topic": "state/SS/943CC682D374/input",
         "jq": ".\"Door Open\"",
-        "msgON": true,
-        "msgOFF": false
+        "msgON": false,
+        "msgOFF": true
     },
     {
         "id": "downstairs_RoomA_floor",
@@ -85,8 +85,8 @@
         "id": "RoomD_door",
         "topic": "SHHNoT/door_d/stat/RESULT",
         "jq": ".Switch1.Action",
-        "msgON": "OFF",
-        "msgOFF": "ON"
+        "msgON": "ON",
+        "msgOFF": "OFF"
     },
     {
         "id": "RoomD_floor",
