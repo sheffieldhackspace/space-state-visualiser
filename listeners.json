@@ -99,15 +99,17 @@
     },
     {
         "id": "RoomD_heaterA",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": ""
+        "topic": "SHHNoT/sensor/heater1/stat/RESULT",
+        "jq": ".Switch1.Action",
+        "msgON": "ON",
+        "msgOFF": "OFF"
     },
     {
         "id": "RoomD_heaterB",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": ""
+        "topic": "SHHNoT/sensor/heater2/stat/RESULT",
+        "jq": ".Switch1.Action",
+        "msgON": "ON",
+        "msgOFF": "OFF"
     },
     {
         "id": "RoomD_projector",
