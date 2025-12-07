@@ -84,10 +84,10 @@
     },
     {
         "id": "RoomD_door",
-        "topic": "SHHNoT/door_d/stat/RESULT",
+        "topic": "SHHNoT/sensor/door_d/stat/RESULT",
         "jq": ".Switch1.Action",
-        "msgON": "ON",
-        "msgOFF": "OFF"
+        "msgON": "OFF",
+        "msgOFF": "ON"
     },
     {
         "id": "RoomD_floor",
@@ -125,7 +125,8 @@
     },
     {
         "id": "RoomD_workbench",
-        "topic": "SHHNoT/sockets/bench/stat/POWER",
+        "topic": "SHHNoT/sensor/bench_sockets/stat/RESULT",
+        "jq": ".Switch1.Action",
         "msgON": "ON",
         "msgOFF": "OFF"
     },
