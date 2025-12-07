@@ -31,6 +31,8 @@ def get_biggest_bbox(bbox1, *bboxes):
 
 
 # delete images in static/icons_crop
+if not os.path.isdir("static/icons_crop"):
+    os.mkdir("static/icons_crop")
 for filename in os.listdir("static/icons_crop"):
     os.unlink(f"static/icons_crop/{filename}")
 
