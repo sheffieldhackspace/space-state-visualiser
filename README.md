@@ -34,7 +34,11 @@ py image_transform.py
 Flask debug
 
 ```bash
+# main app
 flask --app server run
+
+# test app (to just view images)
+flask --app test run
 ```
 
 test MQTT commands
