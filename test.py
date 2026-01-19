@@ -1,6 +1,6 @@
 import json
 from flask import Flask, render_template, request
-from server import parse_listener_coordinates
+from utils import parse_listener_coordinates
 
 app = Flask(__name__)
 
