@@ -1,5 +1,11 @@
 [
     {
+        "id": "downstairs_RoomA_CNC",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": ""
+    },
+    {
         "id": "downstairs_RoomA_door",
         "topic": "state/SS/943CC682D374/input",
         "jq": ".\"Door Open\"",
@@ -32,6 +38,12 @@
         "msgON": "",
         "msgOFF": "",
         "z": -100
+    },
+    {
+        "id": "downstairs_RoomB1_heaterA",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": ""
     },
     {
         "id": "downstairs_RoomB2_3DPrinterA",
@@ -76,7 +88,7 @@
         "z": -100
     },
     {
-        "id": "fairyLights",
+        "id": "RoomDfairyLights",
         "topic": "SHHNoT/sockets/socket1/stat/POWER",
         "msgON": "ON",
         "msgOFF": "OFF",
@@ -110,6 +122,12 @@
         "jq": ".Switch1.Action",
         "msgON": "ON",
         "msgOFF": "OFF"
+    },
+    {
+        "id": "RoomD_heaterC",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": ""
     },
     {
         "id": "RoomD_projector",
@@ -151,5 +169,11 @@
         "msgON": true,
         "msgOFF": false,
         "z": -50
+    },
+    {
+        "id": "RoomF_heaterA",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": ""
     }
 ]
