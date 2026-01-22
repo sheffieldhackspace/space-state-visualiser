@@ -36,7 +36,7 @@ def index():
     do_socket = False if do_socket in ["0", 0] else True
     for listener in listeners:
         if listener["topic"] == "":
-            continueflask --app server run
+            continue
         mqtt.subscribe(listener["topic"])
     return render_template(
         "index.html",
