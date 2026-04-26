@@ -24,26 +24,28 @@
         "topic": "state/SS/943CC682D374/door",
         "jq": ".state",
         "msgON": [
-            "UNLOCKING",
-            "UNLOCKED"
-        ],
-        "msgOFF": [
             "LOCKING",
             "LOCKED"
+        ],
+        "msgOFF": [
+            "UNLOCKING",
+            "UNLOCKED"
         ]
     },
     {
         "id": "downstairs_RoomB1_floor",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": "",
+        "topic": "SHHNoT/lights/room_b1/events/rpc",
+        "jq": ".params.\"switch:0\".output",
+        "msgON": true,
+        "msgOFF": false,
         "z": -100
     },
     {
         "id": "downstairs_RoomB1_heaterA",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": ""
+        "topic": "SHHNoT/sensor/heater3/events/rpc",
+        "jq": ".params.\"input:0\".state",
+        "msgON": true,
+        "msgOFF": false
     },
     {
         "id": "downstairs_RoomB1_fan_B",
@@ -80,9 +82,10 @@
     },
     {
         "id": "downstairs_RoomB2_floor",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": "",
+        "topic": "SHHNoT/lights/room_b2/events/rpc",
+        "jq": ".params.\"switch:0\".output",
+        "msgON": true,
+        "msgOFF": false,
         "z": -100
     },
     {
@@ -169,6 +172,12 @@
         "z": -50
     },
     {
+        "id": "RoomE_LaserPrinter",
+        "topic": "SHHNoT/network/switch/portname/Laser_Printer",
+        "msgON": "up",
+        "msgOFF": "down"
+    },
+    {
         "id": "RoomE_LaserCutter",
         "topic": "SHHNoT/network/switch/portname/PP2_-_Laser_Cutter",
         "msgON": "up",
@@ -184,14 +193,16 @@
     },
     {
         "id": "RoomF_fan_A",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": ""
+        "topic": "SHHNoT/sockets/fan_f/events/rpc",
+        "jq": ".params.\"switch:0\".output",
+        "msgON": true,
+        "msgOFF": false
     },
     {
         "id": "RoomF_heaterA",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": ""
+        "topic": "SHHNoT/sensor/heater4/events/rpc",
+        "jq": ".params.\"input:0\".state",
+        "msgON": true,
+        "msgOFF": false
     }
 ]
