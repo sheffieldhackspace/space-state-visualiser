@@ -46,6 +46,12 @@
         "msgOFF": ""
     },
     {
+        "id": "downstairs_RoomB1_fan_B",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": ""
+    },
+    {
         "id": "downstairs_RoomB2_3DPrinterA",
         "topic": "SHHNoT/network/switch/portname/PP3_-_3D_printer_1",
         "msgON": "up",
@@ -149,6 +155,12 @@
         "msgOFF": "OFF"
     },
     {
+        "id": "RoomD_3DPrinterD",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": ""
+    },
+    {
         "id": "RoomE_floor",
         "topic": "SHHNoT/lights/room_e/events/rpc",
         "jq": ".params.\"switch:0\".output",
@@ -169,6 +181,12 @@
         "msgON": true,
         "msgOFF": false,
         "z": -50
+    },
+    {
+        "id": "RoomF_fan_A",
+        "topic": "",
+        "msgON": "",
+        "msgOFF": ""
     },
     {
         "id": "RoomF_heaterA",
