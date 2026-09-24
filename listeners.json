@@ -14,9 +14,10 @@
     },
     {
         "id": "downstairs_RoomA_floor",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": "",
+        "topic": "SHHNoT/lights/room_a1/events/rpc",
+        "jq": ".params.\"switch:0\".output",
+        "msgON": true,
+        "msgOFF": false,
         "z": -100
     },
     {
@@ -49,9 +50,10 @@
     },
     {
         "id": "downstairs_RoomB1_fan_B",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": ""
+        "topic": "SHHNoT/sockets/fan_b1/events/rpc",
+        "jq": ".params.\"switch:0\".output",
+        "msgON": true,
+        "msgOFF": false
     },
     {
         "id": "downstairs_RoomB2_3DPrinterA",
@@ -179,7 +181,7 @@
     },
     {
         "id": "RoomE_LaserCutter",
-        "topic": "SHHNoT/network/switch/portname/PP2_-_Laser_Cutter",
+        "topic": "SHHNoT/network/switch/portname/PP40_-_Laser_Cutter",
         "msgON": "up",
         "msgOFF": "down"
     },
