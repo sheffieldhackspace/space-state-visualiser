@@ -1,7 +1,7 @@
 import json
 import os
 import re
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
 import jq
@@ -58,6 +58,36 @@ def getlisteners():
 @app.route("/listeners.json")
 def getlistenersjson():
     return listeners
+
+
+class PrometheusMetrics:
+    m = ""
+
+    def add(self, line):
+        self.m += line + "\n"
+
+    def out(self):
+        return self.m
+
+
+@app.route("/metrics")
+def metrics():
+    m = PrometheusMetrics()
+    m.add("# TYPE space_state_status gauge")
+    m.add(
+        "# HELP status of this endpoint. this is always 1 because, well. you work it out."
+    )
+    m.add("space_state_status 1")
+    for listener in listeners:
+        _id = "_".join(listener["id"].split("_")[:-1])
+        if "lastState" in listener and listener["lastState"] != "NA":
+            state = 1 if listener["lastState"] == "on" else 0
+            m.add(f"# TYPE {_id} gauge")
+            m.add("# HELP on/off state")
+            m.add('space_state{item="' + _id + '"} ' + f"{state}")
+    response = make_response(m.out())
+    response.mimetype = "text/plain"
+    return response
 
 
 @mqtt.on_connect()
