@@ -89,7 +89,7 @@ def metrics():
     )
     m.add("space_state_status 1")
     for listener in listeners:
-        _id = "_".join(listener["id"].split("_")[:-1])
+        _id = listener["id"]
         if "lastState" in listener and listener["lastState"] != "NA":
             state = 1 if listener["lastState"] == "on" else 0
             m.add(f"# TYPE {_id} gauge")
