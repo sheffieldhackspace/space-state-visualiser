@@ -5,7 +5,6 @@ from flask import Flask, render_template, request, make_response
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
 import jq
-from utils import parse_listener_coordinates
 
 app = Flask(__name__)
 
@@ -20,6 +19,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 mqtt = Mqtt(app)
 socketio = SocketIO(app)
 
+MQTT_SUBSCRIBED = []
 
 # can generate this from boilerplate with something like
 # while read -r id; do
@@ -27,7 +27,6 @@ socketio = SocketIO(app)
 # done <<<$(ls static/icons/ | grep '.NA.' | sed 's+\.NA\.png++') | jq --slurp
 with open("listeners.json", "r", encoding="utf-8") as f:
     listeners = json.load(f)
-    listeners = parse_listener_coordinates(listeners)
 
 
 @app.route("/")
@@ -37,7 +36,10 @@ def index():
     for listener in listeners:
         if listener["topic"] == "":
             continue
+        if listener["topic"] in MQTT_SUBSCRIBED:
+            continue
         mqtt.subscribe(listener["topic"])
+        MQTT_SUBSCRIBED.append(listener["topic"])
     return render_template(
         "index.html",
         listeners=listeners,
@@ -58,6 +60,14 @@ def getlisteners():
 @app.route("/listeners.json")
 def getlistenersjson():
     return listeners
+
+
+@socketio.on("full-status")
+def handle_fullstatus():
+    app.logger.info("received ask for full status")
+    for listener in listeners:
+        if "lastState" in listener:
+            socketio.emit("status-update", data=[listener, listener["lastState"]])
 
 
 class PrometheusMetrics:
@@ -98,7 +108,10 @@ def handle_connect(client, userdata, flags, rc):
     for listener in listeners:
         if listener["topic"] == "":
             continue
+        if listener["topic"] in MQTT_SUBSCRIBED:
+            continue
         mqtt.subscribe(listener["topic"])
+        MQTT_SUBSCRIBED.append(listener["topic"])
     pass
 
 

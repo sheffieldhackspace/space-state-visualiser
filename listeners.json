@@ -1,207 +1,173 @@
 [
     {
-        "id": "downstairs_RoomA_CNC",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": ""
-    },
-    {
-        "id": "downstairs_RoomA_door",
+        "id": "door_a",
         "topic": "state/SS/943CC682D374/input",
         "jq": ".\"Door Open\"",
-        "msgON": false,
-        "msgOFF": true
+        "msgON": true,
+        "msgOFF": false
     },
     {
-        "id": "downstairs_RoomA_floor",
+        "id": "floor_a",
         "topic": "SHHNoT/lights/room_a1/events/rpc",
         "jq": ".params.\"switch:0\".output",
         "msgON": true,
-        "msgOFF": false,
-        "z": -100
+        "msgOFF": false
     },
     {
-        "id": "downstairs_RoomA_lock",
+        "id": "lock_a",
         "topic": "state/SS/943CC682D374/door",
         "jq": ".state",
         "msgON": [
-            "LOCKING",
-            "LOCKED"
-        ],
-        "msgOFF": [
             "UNLOCKING",
             "UNLOCKED"
+        ],
+        "msgOFF": [
+            "LOCKING",
+            "LOCKED"
         ]
     },
     {
-        "id": "downstairs_RoomB1_floor",
+        "id": "floor_b1",
         "topic": "SHHNoT/lights/room_b1/events/rpc",
         "jq": ".params.\"switch:0\".output",
         "msgON": true,
-        "msgOFF": false,
-        "z": -100
+        "msgOFF": false
     },
     {
-        "id": "downstairs_RoomB1_heaterA",
+        "id": "heater_craft",
         "topic": "SHHNoT/sensor/heater3/events/rpc",
         "jq": ".params.\"input:0\".state",
         "msgON": true,
         "msgOFF": false
     },
     {
-        "id": "downstairs_RoomB1_fan_B",
+        "id": "fan_craft",
         "topic": "SHHNoT/sockets/fan_b1/events/rpc",
         "jq": ".params.\"switch:0\".output",
         "msgON": true,
         "msgOFF": false
     },
     {
-        "id": "downstairs_RoomB2_3DPrinterA",
+        "id": "printer_3d_1",
         "topic": "SHHNoT/network/switch/portname/PP3_-_3D_printer_1",
         "msgON": "up",
         "msgOFF": "down"
     },
     {
-        "id": "downstairs_RoomB2_3DPrinterB",
+        "id": "printer_3d_2",
         "topic": "SHHNoT/network/switch/portname/PP4_-_3D_printer_2",
         "msgON": "up",
-        "msgOFF": "down",
-        "z": -20
+        "msgOFF": "down"
     },
     {
-        "id": "downstairs_RoomB2_3DPrinterC",
+        "id": "printer_3d_3",
         "topic": "SHHNoT/network/switch/portname/PP21_-_3D_printer_3",
         "msgON": "up",
-        "msgOFF": "down",
-        "z": -25
+        "msgOFF": "down"
     },
     {
-        "id": "downstairs_RoomB2_2DPrinterA",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": "",
-        "z": -30
-    },
-    {
-        "id": "downstairs_RoomB2_floor",
+        "id": "floor_b2",
         "topic": "SHHNoT/lights/room_b2/events/rpc",
         "jq": ".params.\"switch:0\".output",
         "msgON": true,
-        "msgOFF": false,
-        "z": -100
+        "msgOFF": false
     },
     {
-        "id": "downstairs_RoomC_floor",
+        "id": "floor_c",
         "topic": "SHHNoT/lights/room_c/events/rpc",
         "jq": ".params.\"switch:0\".output",
         "msgON": true,
-        "msgOFF": false,
-        "z": -100
+        "msgOFF": false
     },
     {
-        "id": "RoomDfairyLights",
+        "id": "fairylights",
         "topic": "SHHNoT/sockets/socket1/stat/POWER",
         "msgON": "ON",
         "msgOFF": "OFF",
         "test": "SHHNoT/sockets/socket1/cmnd/power -m on"
     },
     {
-        "id": "RoomD_door",
+        "id": "door_d",
         "topic": "SHHNoT/sensor/door_d/stat/RESULT",
         "jq": ".Switch1.Action",
-        "msgON": "OFF",
-        "msgOFF": "ON"
+        "msgON": "ON",
+        "msgOFF": "OFF"
     },
     {
-        "id": "RoomD_floor",
+        "id": "floor_d",
         "topic": "SHHNoT/lights/room_d/events/rpc",
         "jq": ".params.\"switch:0\".output",
         "msgON": true,
-        "msgOFF": false,
-        "z": -50
+        "msgOFF": false
     },
     {
-        "id": "RoomD_heaterA",
+        "id": "heater_commons2",
         "topic": "SHHNoT/sensor/heater1/stat/RESULT",
         "jq": ".Switch1.Action",
         "msgON": "ON",
         "msgOFF": "OFF"
     },
     {
-        "id": "RoomD_heaterB",
+        "id": "heater_commons3",
         "topic": "SHHNoT/sensor/heater2/stat/RESULT",
         "jq": ".Switch1.Action",
         "msgON": "ON",
         "msgOFF": "OFF"
     },
     {
-        "id": "RoomD_heaterC",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": ""
-    },
-    {
-        "id": "RoomD_projector",
+        "id": "projector",
         "topic": "SHHNoT/network/switch/portname/Projector",
         "msgON": "up",
         "msgOFF": "down"
     },
     {
-        "id": "RoomD_TV",
+        "id": "monitor",
         "topic": "SHHNoT/network/switch/portname/PP20_-_display",
         "msgON": "up",
         "msgOFF": "down"
     },
     {
-        "id": "RoomD_workbench",
+        "id": "electronicsbench",
         "topic": "SHHNoT/sensor/bench_sockets/stat/RESULT",
         "jq": ".Switch1.Action",
         "msgON": "ON",
         "msgOFF": "OFF"
     },
     {
-        "id": "RoomD_3DPrinterD",
-        "topic": "",
-        "msgON": "",
-        "msgOFF": ""
-    },
-    {
-        "id": "RoomE_floor",
+        "id": "floor_e",
         "topic": "SHHNoT/lights/room_e/events/rpc",
         "jq": ".params.\"switch:0\".output",
         "msgON": true,
-        "msgOFF": false,
-        "z": -50
+        "msgOFF": false
     },
     {
-        "id": "RoomE_LaserPrinter",
+        "id": "printer_2d",
         "topic": "SHHNoT/network/switch/portname/Laser_Printer",
         "msgON": "up",
         "msgOFF": "down"
     },
     {
-        "id": "RoomE_LaserCutter",
+        "id": "lasercutter",
         "topic": "SHHNoT/network/switch/portname/PP40_-_Laser_Cutter",
         "msgON": "up",
         "msgOFF": "down"
     },
     {
-        "id": "RoomF_floor",
+        "id": "floor_f",
         "topic": "SHHNoT/lights/room_f/events/rpc",
         "jq": ".params.\"switch:0\".output",
         "msgON": true,
-        "msgOFF": false,
-        "z": -50
+        "msgOFF": false
     },
     {
-        "id": "RoomF_fan_A",
+        "id": "fan_wood",
         "topic": "SHHNoT/sockets/fan_f/events/rpc",
         "jq": ".params.\"switch:0\".output",
         "msgON": true,
         "msgOFF": false
     },
     {
-        "id": "RoomF_heaterA",
+        "id": "heater_wood",
         "topic": "SHHNoT/sensor/heater4/events/rpc",
         "jq": ".params.\"input:0\".state",
         "msgON": true,

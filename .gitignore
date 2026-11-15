@@ -1,12 +1,6 @@
-# secrets
-.env
-
 # python
 /env
 /__pycache__
 
 # history
 /history.json
-
-# built images
-/static/icons_crop

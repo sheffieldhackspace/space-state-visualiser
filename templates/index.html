@@ -7,31 +7,76 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript" charset="utf-8">
-      {% if do_socket %}
+      colours = {
+        "NA": "#444444",
+        "door_open": "#990000",
+        "light_on": "#555511",
+        "light_off": "#222222",
+        "on": "#aa9922",
+        "ok": "#446644"
+      }
+      function fill(item, colour_or_state) {
+        let colour = colour_or_state
+        if (colour_or_state == "NA" || colour_or_state == "on" || colour_or_state == "off") {
+          colour = colours["NA"]
+          if (colour_or_state == "off") {
+            if (item.startsWith("floor")) colour = colours["light_off"]
+            else colour = colours["ok"]
+          }
+          else if (colour_or_state == "on") {
+            if (item.startsWith("door")) colour = colours["door_open"]
+            else if (item.startsWith("floor")) colour = colours["light_on"]
+            else colour = colours["on"]
+          }
+        }
+        document.getElementById("space").getSVGDocument().querySelector('g[*|label="' + item + '"]').querySelectorAll("*").forEach((e) => {
+          if (e.style.fill && e.style.fill != "none") {e.style.fill = colour}
+        })
+      }
       // update image with ID with state (NA, on, or off)
       function update_image(listener, state) {
         const id = listener["id"];
-        const url = "/static/icons_crop/" + id + "." + state + ".png";
 
         console.groupCollapsed(`update <${id}> to <${state}>`);
         console.log(listener);
-        console.log("url: " + url);
         console.groupEnd();
 
-        const image = document.getElementById(id);
-        image.setAttribute("src", url);
+        fill(id, state)
       }
+      function get_all_objects() {
+        return document.getElementById("space").getSVGDocument().querySelectorAll('g[*|label="objects"] > g > g')
+      }
+      function setAllTo(state) {
+        get_all_objects().forEach(e => fill(e.getAttribute("inkscape:label"), state))
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("space").addEventListener("load", () => {
+          // log SVG items
+          console.info("SVG loaded!")
+          console.log("objects: ", [...get_all_objects()].map(e => e.getAttribute("inkscape:label")))
 
-      const socket = io();
-      socket.on("connect", function () {
-        // socket.emit("my event", { data: "I'm connected!" });
-      });
-      socket.on("status-update", function (data) {
-        const listener = data[0];
-        const new_state = data[1];
-        update_image(listener, new_state);
-      });
-      {% endif %}
+          // set all items to NA
+          console.info("set all items to NA")
+          setAllTo("NA")
+
+          console.info("connect to websocket")
+          {% if do_socket %}
+          const socket = io();
+          socket.on("connect", function () {
+            console.log("websocket connected!")
+            socket.emit("full-status");
+          });
+          socket.on("status-update", function (data) {
+            console.info("got status-update")
+            const listener = data[0];
+            const new_state = data[1];
+            update_image(listener, new_state);
+          });
+          {% else %}
+          console.log("socket turned off")
+          {% endif %}
+        })
+      })
     </script>
     <script>
       // clock
@@ -115,35 +160,14 @@
   <body>
     <p id="clock"></p>
     <div id="state">
-      <img id="space" src="/static/space.jpg" />
-      {% for listener in listeners %}
-      <img
-        id="{{ listener.id }}"
-        class="icon"
-        src="/static/icons_crop/{{ listener.id }}.{% if view_state %}{{ view_state }}{% else %}{% if listener.lastState %}{{ listener.lastState }}{% else %}NA{% endif %}{% endif %}.png"
-        style="--x:{{ listener.x / 1920 * 100 }}%; --y:{{ listener.y / 1080 * 100 }}%; {%if
-        listener.z
-        %}z-index: {{ listener.z }}
-        {%
-        endif
-        %}"
-      />
-      {% endfor %}
+      <!-- <img id="space" src="static/space.svg" /> -->
+      <object id="space" type="image/svg+xml" data="static/space.svg"></object>
     </div>
     {% if view_state %}
     <div id="statebuttons">
-      <a href="?state=NA" class="{% if view_state == 'NA' %}active{% endif %}">
-        NA
-      </a>
-      <a href="?state=on" class="{% if view_state == 'on' %}active{% endif %}">
-        on
-      </a>
-      <a
-        href="?state=off"
-        class="{% if view_state == 'off' %}active{% endif %}"
-      >
-        off
-      </a>
+      <button onclick="setAllTo('NA')">NA</button>
+      <button onclick="setAllTo('on')">on</button>
+      <button onclick="setAllTo('off')">off</button>
     </div>
     {% endif %}
   </body>
