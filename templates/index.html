@@ -10,10 +10,10 @@
       colours = {
         "NA": "#444444",
         "door_open": "#990000",
-        "light_on": "#555511",
+        "light_on": "#806C00",
         "light_off": "#222222",
         "on": "#aa9922",
-        "ok": "#446644"
+        "ok": "#454D45"
       }
       function fill(item, colour_or_state) {
         let colour = colour_or_state
@@ -24,7 +24,7 @@
             else colour = colours["ok"]
           }
           else if (colour_or_state == "on") {
-            if (item.startsWith("door")) colour = colours["door_open"]
+            if (item.startsWith("door") || item.startsWith("lock")) colour = colours["door_open"]
             else if (item.startsWith("floor")) colour = colours["light_on"]
             else colour = colours["on"]
           }
@@ -158,11 +158,11 @@
     </style>
   </head>
   <body>
-    <p id="clock"></p>
     <div id="state">
       <!-- <img id="space" src="static/space.svg" /> -->
       <object id="space" type="image/svg+xml" data="static/space.svg"></object>
     </div>
+    <p id="clock"></p>
     {% if view_state %}
     <div id="statebuttons">
       <button onclick="setAllTo('NA')">NA</button>

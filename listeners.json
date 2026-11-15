@@ -1,21 +1,14 @@
 [
     {
         "id": "door_a",
-        "topic": "state/SS/943CC682D374/input",
+        "topic": "state/SS/E4B323F8B790/input",
         "jq": ".\"Door Open\"",
         "msgON": true,
         "msgOFF": false
     },
     {
-        "id": "floor_a",
-        "topic": "SHHNoT/lights/room_a1/events/rpc",
-        "jq": ".params.\"switch:0\".output",
-        "msgON": true,
-        "msgOFF": false
-    },
-    {
         "id": "lock_a",
-        "topic": "state/SS/943CC682D374/door",
+        "topic": "state/SS/E4B323F8B790/door",
         "jq": ".state",
         "msgON": [
             "UNLOCKING",
@@ -25,6 +18,40 @@
             "LOCKING",
             "LOCKED"
         ]
+    },
+    {
+        "id": "door_c",
+        "topic": "state/SS/E4B323F8B084/input",
+        "jq": ".\"Door Open\"",
+        "msgON": true,
+        "msgOFF": false
+    },
+    {
+        "id": "lock_c",
+        "topic": "state/SS/E4B323F8B084/door",
+        "jq": ".state",
+        "msgON": [
+            "UNLOCKING",
+            "UNLOCKED"
+        ],
+        "msgOFF": [
+            "LOCKING",
+            "LOCKED"
+        ]
+    },
+    {
+        "id": "floor_a1",
+        "topic": "SHHNoT/lights/room_a1/events/rpc",
+        "jq": ".params.\"switch:0\".output",
+        "msgON": true,
+        "msgOFF": false
+    },
+    {
+        "id": "floor_a2",
+        "topic": "SHHNoT/lights/room_a2/events/rpc",
+        "jq": ".params.\"switch:0\".output",
+        "msgON": true,
+        "msgOFF": false
     },
     {
         "id": "floor_b1",
@@ -49,22 +76,23 @@
     },
     {
         "id": "printer_3d_1",
-        "topic": "SHHNoT/network/switch/portname/PP3_-_3D_printer_1",
+        "topic": "SHHNoT/network/switch/portname/PP41_-_3D_printer_1",
         "msgON": "up",
         "msgOFF": "down"
     },
     {
         "id": "printer_3d_2",
-        "topic": "SHHNoT/network/switch/portname/PP4_-_3D_printer_2",
+        "topic": "SHHNoT/network/switch/portname/PP42_-_3D_printer_2",
         "msgON": "up",
         "msgOFF": "down"
     },
     {
-        "id": "printer_3d_3",
-        "topic": "SHHNoT/network/switch/portname/PP21_-_3D_printer_3",
+        "id": "printer_3d_roomd",
+        "topic": "SHHNoT/network/switch/portname/PP26_-_3D_printer_5",
         "msgON": "up",
         "msgOFF": "down"
     },
+
     {
         "id": "floor_b2",
         "topic": "SHHNoT/lights/room_b2/events/rpc",
@@ -101,18 +129,25 @@
         "msgOFF": false
     },
     {
-        "id": "heater_commons2",
+        "id": "heater_commons1",
         "topic": "SHHNoT/sensor/heater1/stat/RESULT",
         "jq": ".Switch1.Action",
         "msgON": "ON",
         "msgOFF": "OFF"
     },
     {
-        "id": "heater_commons3",
+        "id": "heater_commons2",
         "topic": "SHHNoT/sensor/heater2/stat/RESULT",
         "jq": ".Switch1.Action",
         "msgON": "ON",
         "msgOFF": "OFF"
+    },
+    {
+        "id": "heater_commons3",
+        "topic": "SHHNoT/sensor/heater5/events/rpc",
+        "jq": ".params.\"input:0\".state",
+        "msgON": true,
+        "msgOFF": false
     },
     {
         "id": "projector",
@@ -149,6 +184,12 @@
     {
         "id": "lasercutter",
         "topic": "SHHNoT/network/switch/portname/PP40_-_Laser_Cutter",
+        "msgON": "up",
+        "msgOFF": "down"
+    },
+    {
+        "id": "lasercomputer",
+        "topic": "SHHNoT/network/switch/portname/PP38_-_Laser_PC",
         "msgON": "up",
         "msgOFF": "down"
     },
